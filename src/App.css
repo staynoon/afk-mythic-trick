@@ -2,37 +2,18 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* body{
+  background-color: #C79366;
+} */
+
+@font-face {
+  font-family: "AFK";
+  src: local("AFK"), url(./fonts/hgame_font_en.ttf) format("truetype");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1, h2, h3, h4, h5, p {
+  font-family: "AFK";
+  text-shadow: 0 0 1px #3E281B, 0 0 1px #3E281B, 0 0 1px #3E281B, 0 0 1px #3E281B;
+  color: #FBE8BE;
+  /* -webkit-text-stroke: 1px #3E281B; */
 }
