@@ -13,7 +13,33 @@
 
 h1, h2, h3, h4, h5, p {
   font-family: "AFK";
-  text-shadow: 0 0 1px #3E281B, 0 0 1px #3E281B, 0 0 1px #3E281B, 0 0 1px #3E281B;
   color: #FBE8BE;
-  /* -webkit-text-stroke: 1px #3E281B; */
+}
+
+.column-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.timer-box {
+  margin: 0 auto;
+}
+
+.title-box {
+  margin: 0 auto;
+}
+
+.stroke-single {
+  position: relative;
+  background: transparent;
+  z-index: 0;
+}
+/* add a single stroke */
+.stroke-single:before {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.2em #391E18;
+  text-align: center;
+  z-index: -1;
 }
