@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "AFK";
+  src: local("AFK"), url(./fonts/hgame_font_en.ttf) format("truetype");
+}
+
+h1, h2, h3, h4, h5, p {
+  font-family: "AFK";
+  color: #FBE8BE;
+}
+
+.stroke-single {
+  position: relative;
+  background: transparent;
+  z-index: 0;
+}
+/* add a single stroke */
+.stroke-single:before {
+  content: attr(title);
+  position: absolute;
+  -webkit-text-stroke: 0.2em #391E18;
+  text-align: center;
+  z-index: -1;
+}
