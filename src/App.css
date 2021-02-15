@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.column-container {
+.row-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

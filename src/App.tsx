@@ -5,12 +5,6 @@ import './App.css';
 import "./main.css"
 import Countdown from "./Countdown"
 
-interface Props {};
-
-interface State {
-  timeString: string;
-};
-
 function App() {
 
   return (
@@ -18,10 +12,10 @@ function App() {
       <div className="title-box">
         <h1 className="stroke-single">AFK Mythic Trick Timer</h1>
       </div>
-      <div className="column-container">
-        <Countdown name="Emblems Timer" startTime={500} />
-        <Countdown name="Mythic Gear Timer" startTime={500} />
-        <Countdown name="Stone Timer" startTime={500} />
+      <div className="row-container">
+        <Countdown name="Emblems Timer" remainingSeconds={1000} />
+        <Countdown name="Mythic Gear Timer" remainingSeconds={5000} />
+        <Countdown name="Stone Timer" remainingSeconds={500} />
       </div>
       <p className="stroke-single">Come back on January 13, 2021 at 6:08 PM for a 51% chance to get a stone!</p>
     </div>
