@@ -1,0 +1,8 @@
+.timer-box {
+    margin: 0 auto;
+}
+
+.Clockbar {
+  display: flex;
+  flex-direction: row;
+}

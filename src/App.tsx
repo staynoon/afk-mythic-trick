@@ -3,7 +3,7 @@ import $ from "jquery";
 
 import './App.css';
 import "./main.css"
-import Countdown from "./Countdown"
+import Countdown from "./time/Countdown"
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
       <div className="row-container">
         <Countdown name="Emblems Timer" remainingSeconds={1000} />
         <Countdown name="Mythic Gear Timer" remainingSeconds={5000} />
-        <Countdown name="Stone Timer" remainingSeconds={500} />
+        <Countdown name="Stone Timer" remainingSeconds={1000} />
       </div>
       <p className="stroke-single">Come back on January 13, 2021 at 6:08 PM for a 51% chance to get a stone!</p>
     </div>
