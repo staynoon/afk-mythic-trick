@@ -9,38 +9,45 @@ interface Props {
   remainingSeconds: number;
 };
 
-function timeConvert(totalSeconds: number): {daysSplit: number, hoursSplit: number, minutesSplit: number, secondsSplit: number} {
-  let daysCount: number = Math.floor(totalSeconds/86400);
-  let remainingSeconds = totalSeconds - daysCount * 86400;
-  let hoursCount: number = Math.floor(remainingSeconds/3600)
-  remainingSeconds -= hoursCount * 3600;
-  let minutesCount: number = Math.floor(remainingSeconds/60);
-  let secondsCount: number = totalSeconds%60;
-
-  return {
-    daysSplit: daysCount,
-    hoursSplit: hoursCount,
-    minutesSplit: minutesCount,
-    secondsSplit: secondsCount
-  };
+interface State {
+  remaining: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
 }
 
 function Countdown(props: Props) {
-  const {daysSplit, hoursSplit, minutesSplit, secondsSplit} = timeConvert(props.remainingSeconds);
+  const [time,setTime] = React.useState<State> ({
+    remaining: props.remainingSeconds,
+    days: Math.floor(props.remainingSeconds/86400),
+    hours: Math.floor((props.remainingSeconds%86400)/3600),
+    minutes: Math.floor((props.remainingSeconds%3600)/60),
+    seconds: props.remainingSeconds%60
+  });
 
-  const [days,setDays] = React.useState(daysSplit);
-  const [hours,setHours] = React.useState(hoursSplit);
-  const [minutes,setMinutes] = React.useState(minutesSplit);
-  const [seconds,setSeconds] = React.useState(secondsSplit);
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setTime({
+        remaining: time.remaining - 1,
+        days: Math.floor((time.remaining - 1)/86400),
+        hours: Math.floor(((time.remaining - 1)%86400)/3600),
+        minutes: Math.floor(((time.remaining - 1)%3600)/60),
+        seconds: (time.remaining - 1)%60
+      })
+    },1000);
+
+    return () => clearTimeout(timer);
+  });
 
   return (
     <div className="timer-box">
       <h2 className="stroke-single">{props.name}</h2>
       <div className="Clockbar">
-        <Timeblock name="Days" value={days}/>
-        <Timeblock name="Hours" value={hours}/>
-        <Timeblock name="Minutes" value={minutes}/>
-        <Timeblock name="Seconds" value={seconds}/>
+        <Timeblock name="Days" value={time.days}/>
+        <Timeblock name="Hours" value={time.hours}/>
+        <Timeblock name="Minutes" value={time.minutes}/>
+        <Timeblock name="Seconds" value={time.seconds}/>
       </div>
     </div>
   );

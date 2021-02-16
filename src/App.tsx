@@ -13,9 +13,9 @@ function App() {
         <h1 className="stroke-single">AFK Mythic Trick Timer</h1>
       </div>
       <div className="row-container">
-        <Countdown name="Emblems Timer" remainingSeconds={1000} />
-        <Countdown name="Mythic Gear Timer" remainingSeconds={5000} />
-        <Countdown name="Stone Timer" remainingSeconds={1000} />
+        <Countdown name="Emblems Timer" remainingSeconds={230169} />
+        <Countdown name="Mythic Gear Timer" remainingSeconds={610034} />
+        <Countdown name="Stone Timer" remainingSeconds={737780} />
       </div>
       <p className="stroke-single">Come back on January 13, 2021 at 6:08 PM for a 51% chance to get a stone!</p>
     </div>
