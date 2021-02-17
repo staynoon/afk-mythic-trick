@@ -4,8 +4,12 @@ import $ from "jquery";
 import './App.css';
 import "./main.css"
 import Countdown from "./time/Countdown"
+import Claimprompt from "./time/Claimprompt"
 
 function App() {
+  let emblemTime = 5;
+  let gearTime = 610034;
+  let stoneTime = 737780;
 
   return (
     <div className="App">
@@ -13,11 +17,11 @@ function App() {
         <h1 className="stroke-single">AFK Mythic Trick Timer</h1>
       </div>
       <div className="row-container">
-        <Countdown name="Emblems Timer" remainingSeconds={230169} />
-        <Countdown name="Mythic Gear Timer" remainingSeconds={610034} />
-        <Countdown name="Stone Timer" remainingSeconds={737780} />
+        <Countdown name="Emblems Timer" remainingSeconds={emblemTime} />
+        <Countdown name="Mythic Gear Timer" remainingSeconds={gearTime} />
+        <Countdown name="Stone Timer" remainingSeconds={stoneTime} />
       </div>
-      <p className="stroke-single">Come back on January 13, 2021 at 6:08 PM for a 51% chance to get a stone!</p>
+      <Claimprompt remainingTime={stoneTime}/>
     </div>
   )
 };

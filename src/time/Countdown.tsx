@@ -37,6 +37,10 @@ function Countdown(props: Props) {
       })
     },1000);
 
+    if (time.remaining <= 0) {
+      clearTimeout(timer);
+    }
+
     return () => clearTimeout(timer);
   });
 
