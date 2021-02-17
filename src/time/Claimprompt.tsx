@@ -14,7 +14,7 @@ function Claimprompt(props: Props) {
 
   return(
     <div>
-      <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes()} for a 51% chance to get a stone!</p>
+      <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes() < 10 ? `0${claimDate.getMinutes()}` : `${claimDate.getMinutes()}`} for a 51% chance to get a stone!</p>
     </div>
   )
 }
