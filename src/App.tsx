@@ -6,6 +6,7 @@ import "./main.css"
 import Countdown from "./time/Countdown"
 import Claimprompt from "./time/Claimprompt"
 import Stage from "./userInput/Stage"
+import Dateselector from "./userInput/Dateselector"
 
 function App() {
   let emblemTime = 5;
@@ -25,10 +26,7 @@ function App() {
       <Claimprompt remainingTime={stoneTime}/>
       <div>
         <Stage />
-        <div>
-          <h2>Clear Time</h2>
-          <h3>February 13, 2021 10:30</h3>
-        </div>
+        <Dateselector />
         <h2>Drop Rate</h2>
       </div>
     </div>

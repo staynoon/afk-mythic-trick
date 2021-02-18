@@ -76,13 +76,13 @@ function Stage() {
       <div className="stage-box">
         <div>
           <img src={arrowUp} className="arrow" alt="up arrow" onClick={incrementChapter}></img>
-          <h3>{chapter}</h3>
+          <h3 className="value-container">{chapter}</h3>
           <img src={arrowDown} className="arrow" alt="down arrow" onClick={decrementChapter}></img>
         </div>
         <h3 className="hyphen">-</h3>
         <div>
           <img src={arrowUp} className="arrow" alt="up arrow" onClick={incrementStage}></img>
-          <h3>{stage}</h3>
+          <h3 className="value-container">{stage}</h3>
           <img src={arrowDown} className="arrow" alt="down arrow" onClick={decrementStage}></img>
         </div>
       </div>
