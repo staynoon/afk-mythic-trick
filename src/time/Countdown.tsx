@@ -39,10 +39,27 @@ function Countdown(props: Props) {
 
     if (time.remaining <= 0) {
       clearTimeout(timer);
+      setTime({
+        remaining: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      })
     }
 
     return () => clearTimeout(timer);
   });
+
+  React.useEffect(() => {
+    setTime({
+      remaining: props.remainingSeconds,
+      days: Math.floor(props.remainingSeconds/86400),
+      hours: Math.floor((props.remainingSeconds%86400)/3600),
+      minutes: Math.floor((props.remainingSeconds%3600)/60),
+      seconds: props.remainingSeconds%60
+    })
+  },[props.remainingSeconds],);
 
   return (
     <div className="timer-box">

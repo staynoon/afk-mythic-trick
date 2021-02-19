@@ -6,116 +6,130 @@ import "./Dateselector.css"
 import arrowUp from "../assets/arrowUp.svg"
 import arrowDown from "../assets/arrowDown.svg"
 
-const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-function Dateselector() {
-  let currentTime = new Date(Date.now());
-  const [month,setMonth] = React.useState<number>(currentTime.getMonth())
-  const [day,setDay] = React.useState<number>(currentTime.getDate())
-  const [year,setYear] = React.useState<number>(currentTime.getFullYear())
-  const [hour,setHour] = React.useState<number>(currentTime.getHours())
-  const [minute,setMinute] = React.useState<number>(currentTime.getMinutes())
+interface Props {
+  month: number,
+  setMonth: React.Dispatch<React.SetStateAction<number>>,
+  day: number,
+  setDay: React.Dispatch<React.SetStateAction<number>>,
+  year: number,
+  setYear: React.Dispatch<React.SetStateAction<number>>,
+  hour: number,
+  setHour: React.Dispatch<React.SetStateAction<number>>,
+  minute: number,
+  setMinute: React.Dispatch<React.SetStateAction<number>>,
+}
 
+function Dateselector(props: Props) {
   let incrementMonth = ():void => {
-    if (month === 11) {
-      setMonth(0);
+    if (props.month === 11) {
+      props.setMonth(0);
     } else {
-      if (month === 0) {
-        if ((year%4) === 0 && day > 29) {
-          setDay(29);
-        } else if (year%4 != 0 && day > 28) {
-          setDay(28);
+      if (props.month === 0) {
+        if ((props.year%4) === 0 && props.day > 29) {
+          props.setDay(29);
+        } else if (props.year%4 != 0 && props.day > 28) {
+          props.setDay(28);
         }
-      } else if ((month === 2 || month === 4 || month === 7 || month === 9) && day > 30) {
-        setDay(30);
+      } else if ((props.month === 2 || props.month === 4 || props.month === 7 || props.month === 9) && props.day > 30) {
+        props.setDay(30);
       }
-      setMonth(month + 1);
+      props.setMonth(props.month + 1);
     }
   }
 
   let decrementMonth = ():void => {
-    if (month === 0) {
-      setMonth(11);
+    if (props.month === 0) {
+      props.setMonth(11);
     } else {
-      if (month === 2) {
-        if (year%4 === 0 && day > 29) {
-          setDay(29);
-        } else if (year%4 != 0 && day > 28) {
-          setDay(28);
+      if (props.month === 2) {
+        if (props.year%4 === 0 && props.day > 29) {
+          props.setDay(29);
+        } else if (props.year%4 != 0 && props.day > 28) {
+          props.setDay(28);
         }
-      } else if ((month === 11 || month === 4 || month === 6 || month === 9) && day > 30) {
-        setDay(30);
+      } else if ((props.month === 11 || props.month === 4 || props.month === 6 || props.month === 9) && props.day > 30) {
+        props.setDay(30);
       }
-      setMonth(month - 1);
+      props.setMonth(props.month - 1);
     }
   }
 
   let incrementDay = ():void => {
-    if ((month === 3 || month === 5 || month === 8 || month === 10) && day >= 30) {
-      setDay(1);
-    } else if (month === 1 && year%4 === 0 && day >= 29) {
-      setDay(1);
-    } else if (month === 1 && year%4 != 0 && day >= 28) {
-      setDay(1);
-    } else if ((month === 0 || month === 2 || month === 4 || month === 6 || month === 7 || month === 9 || month === 11) && day >= 31) {
-      setDay(1);
+    if ((props.month === 3 || props.month === 5 || props.month === 8 || props.month === 10) && props.day >= 30) {
+      props.setDay(1);
+    } else if (props.month === 1 && props.year%4 === 0 && props.day >= 29) {
+      props.setDay(1);
+    } else if (props.month === 1 && props.year%4 != 0 && props.day >= 28) {
+      props.setDay(1);
+    } else if ((props.month === 0 || props.month === 2 || props.month === 4 || props.month === 6 || props.month === 7 || props.month === 9 || props.month === 11) && props.day >= 31) {
+      props.setDay(1);
     } else {
-      setDay(day + 1);
+      props.setDay(props.day + 1);
     }
   }
 
   let decrementDay = ():void => {
-    if (day <= 1){
-      if (month === 3 || month === 5 || month === 8 || month === 10) {
-        setDay(30);
-      } else if (month === 1 && (year%4) === 0) {
-        setDay(29);
-      } else if (month === 1 && (year%4) != 0) {
-        setDay(28);
-      } else if (month === 0 || month === 2 || month === 4 || month === 6 || month === 7 || month === 9 || month === 11) {
-        setDay(31);
+    if (props.day <= 1){
+      if (props.month === 3 || props.month === 5 || props.month === 8 || props.month === 10) {
+        props.setDay(30);
+      } else if (props.month === 1 && (props.year%4) === 0) {
+        props.setDay(29);
+      } else if (props.month === 1 && (props.year%4) != 0) {
+        props.setDay(28);
+      } else if (props.month === 0 || props.month === 2 || props.month === 4 || props.month === 6 || props.month === 7 || props.month === 9 || props.month === 11) {
+        props.setDay(31);
       }
     } else {
-      setDay(day - 1);
+      props.setDay(props.day - 1);
     }
   }
 
   let incrementYear = ():void => {
-    if ((year%4) === 0 && month === 1 && day >= 29) {
-      setDay(28);
+    if ((props.year%4) === 0 && props.month === 1 && props.day >= 29) {
+      props.setDay(28);
     }
-    setYear(year + 1);
+    props.setYear(props.year + 1);
   }
 
   let decrementYear = ():void => {
-    if ((year%4) === 0 && month === 1 && day >= 29) {
-      setDay(28);
+    if ((props.year%4) === 0 && props.month === 1 && props.day >= 29) {
+      props.setDay(28);
     }
-    setYear(year - 1);
+    props.setYear(props.year - 1);
   }
 
   let incrementHour = ():void => {
-    if (hour === 23) {
-      setHour(0);
+    if (props.hour >= 23) {
+      props.setHour(0);
     } else {
-      setHour(hour + 1);
+      props.setHour(props.hour + 1);
     }
   }
 
   let decrementHour = ():void => {
-    if (hour === 0) {
-      setHour(23);
+    if (props.hour <= 0) {
+      props.setHour(23);
     } else {
-      setHour(hour - 1);
+      props.setHour(props.hour - 1);
     }
   }
 
   let incrementMinute = (): void => {
-    setMinute(minute + 1);
+    if (props.minute >= 59) {
+      props.setMinute(0);
+    } else {
+    props.setMinute(props.minute + 1);
+    }
   }
 
   let decrementMinute = (): void => {
-    setMinute(minute - 1);
+    if (props.minute <= 0) {
+      props.setMinute(59);
+    } else {
+    props.setMinute(props.minute - 1);
+    }
   }
 
   return (
@@ -124,30 +138,30 @@ function Dateselector() {
       <div className="date-box">
         <div className="space">
           <img src={arrowUp} alt="up arrow" className="arrow" onClick={incrementMonth}></img>
-          <h3 className="value-container">{monthNames[month]}</h3>
+          <h3 className="value-container">{monthNames[props.month]}</h3>
           <img src={arrowDown} alt="down arrow" className="arrow" onClick={decrementMonth}></img>
         </div>
         <div>
           <img src={arrowUp} alt="up arrow" className="arrow" onClick={incrementDay}></img>
-          <h3 className="value-container">{day}</h3>
+          <h3 className="value-container">{props.day}</h3>
           <img src={arrowDown} alt="down arrow" className="arrow" onClick={decrementDay}></img>
         </div>
         <h3 className="space value-container">,</h3>
         <div className="space">
           <img src={arrowUp} alt="up arrow" className="arrow" onClick={incrementYear}></img>
-          <h3 className="value-container">{year}</h3>
+          <h3 className="value-container">{props.year}</h3>
           <img src={arrowDown} alt="down arrow" className="arrow" onClick={decrementYear}></img>
         </div>
         <h3 className="value-container space">at</h3>
         <div>
           <img src={arrowUp} alt="up arrow" className="arrow" onClick={incrementHour}></img>
-          <h3 className="value-container">{hour < 10 ? `0${hour}` : `${hour}`}</h3>
+          <h3 className="value-container">{props.hour < 10 ? `0${props.hour}` : `${props.hour}`}</h3>
           <img src={arrowDown} alt="down arrow" className="arrow" onClick={decrementHour}></img>
         </div>
         <h3 className="value-container">:</h3>
         <div>
           <img src={arrowUp} alt="up arrow" className="arrow" onClick={incrementMinute}></img>
-          <h3 className="value-container">{minute < 10 ? `0${minute}` : `${minute}`}</h3>
+          <h3 className="value-container">{props.minute < 10 ? `0${props.minute}` : `${props.minute}`}</h3>
           <img src={arrowDown} alt="down arrow" className="arrow" onClick={decrementMinute}></img>
         </div>
       </div>

@@ -6,67 +6,71 @@ import "./Stage.css"
 import arrowUp from "../assets/arrowUp.svg"
 import arrowDown from "../assets/arrowDown.svg"
 
-function Stage() {
-  const [chapter,setChapter] = React.useState<number>(34);
-  const [stage,setStage] = React.useState<number>(7);
+interface Props {
+  chapter: number,
+  setChapter: React.Dispatch<React.SetStateAction<number>>
+  stage: number,
+  setStage: React.Dispatch<React.SetStateAction<number>>
+}
 
+function Stage(props: Props) {
   let incrementChapter = ():void => {
-    if (chapter == 40) {
-      setChapter(1);
-      setStage(12);
+    if (props.chapter == 40) {
+      props.setChapter(1);
+      props.setStage(12);
     } else {
-    setChapter(chapter + 1);
+      props.setChapter(props.chapter + 1);
     }
   }
 
   let decrementChapter = ():void => {
-    if (chapter === 20 && stage > 40) {
-      setStage(40);
-    } else if (chapter === 5 && stage > 36) {
-      setStage(36);
-    } else if (chapter === 3 && stage > 28) {
-      setStage(28);
-    } else if (chapter === 2 && stage > 12) {
-      setStage(12);
+    if (props.chapter === 20 && props.stage > 40) {
+      props.setStage(40);
+    } else if (props.chapter === 5 && props.stage > 36) {
+      props.setStage(36);
+    } else if (props.chapter === 3 && props.stage > 28) {
+      props.setStage(28);
+    } else if (props.chapter === 2 && props.stage > 12) {
+      props.setStage(12);
     }
-    if (chapter === 1) {
-      setChapter(40);
+    if (props.chapter === 1) {
+      props.setChapter(40);
     } else {
-    setChapter(chapter - 1);
+      props.setChapter(props.chapter - 1);
     }
   }
 
   let incrementStage = ():void => {
-    if (chapter === 1 && stage === 12) {
-      setStage(1);
-    } else if (chapter === 2 && stage === 28) {
-      setStage(1);
-    } else if (chapter >= 3 && chapter <= 4 && stage === 36){
-      setStage(1);
-    } else if (chapter >= 5 && chapter <= 19 && stage === 40) {
-      setStage(1);
-    } else if (chapter >= 20 && stage === 60) {
-      setStage(1);
+    if (props.chapter === 1 && props.stage === 12) {
+      props.setStage(1);
+    } else if (props.chapter === 2 && props.stage === 28) {
+      props.setStage(1);
+    } else if (props.chapter >= 3 && props.chapter <= 4 && props.stage === 36){
+      props.setStage(1);
+    } else if (props.chapter >= 5 && props.chapter <= 19 && props.stage === 40) {
+      props.setStage(1);
+    } else if (props.chapter >= 20 && props.stage === 60) {
+      props.setStage(1);
     } else {
-      setStage(stage + 1);
+      props.setStage(props.stage + 1);
     }
   };
 
   let decrementStage = ():void => {
-    if (stage === 1){
-      if (chapter === 1) {
-        setStage(12);
-      } else if (chapter === 2) {
-        setStage(28);
-      } else if (chapter >= 3 && chapter <=4) {
-        setStage(36)
-      } else if (chapter >= 5 && chapter <= 19) {
-        setStage(40);
+    if (props.stage === 1){
+      if (props.chapter === 1) {
+        props.setStage(12);
+      } else if (props.chapter === 2) {
+        props.setStage(28);
+      } else if (props.chapter >= 3 && props.chapter <=4) {
+        props.setStage(36)
+      } else if (props.chapter >= 5 && props.chapter <= 19) {
+        props.setStage(40);
       } else {
-        setStage(60);
+        props.setStage(60);
       }
     } else {
-      setStage(stage - 1);
+      props.setStage(props.stage - 1);
     }
   };
 
@@ -76,13 +80,13 @@ function Stage() {
       <div className="stage-box">
         <div>
           <img src={arrowUp} className="arrow" alt="up arrow" onClick={incrementChapter}></img>
-          <h3 className="value-container">{chapter}</h3>
+          <h3 className="value-container">{props.chapter}</h3>
           <img src={arrowDown} className="arrow" alt="down arrow" onClick={decrementChapter}></img>
         </div>
         <h3 className="hyphen">-</h3>
         <div>
           <img src={arrowUp} className="arrow" alt="up arrow" onClick={incrementStage}></img>
-          <h3 className="value-container">{stage}</h3>
+          <h3 className="value-container">{props.stage}</h3>
           <img src={arrowDown} className="arrow" alt="down arrow" onClick={decrementStage}></img>
         </div>
       </div>
