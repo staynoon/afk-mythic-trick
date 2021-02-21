@@ -5,7 +5,8 @@ import "../main.css"
 const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
 
 interface Props {
-  remainingTime: number
+  remainingTime: number,
+  claimType: string
 }
 
 function Claimprompt(props: Props) {
@@ -14,7 +15,7 @@ function Claimprompt(props: Props) {
 
   return(
     <div>
-      <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes() < 10 ? `0${claimDate.getMinutes()}` : `${claimDate.getMinutes()}`} for a 51% chance to get a stone!</p>
+      <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes() < 10 ? `0${claimDate.getMinutes()}` : `${claimDate.getMinutes()}`} for a 51% chance to get a {props.claimType}!</p>
     </div>
   )
 }

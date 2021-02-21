@@ -1,20 +1,6 @@
 .App {
   text-align: center;
 }
-
-.row-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .title-box {
-  margin: 0 auto;
-}
-
-.begin-button {
-  background-color: #391E18;
-  max-width: 150px;
-  text-align: center;
   margin: 0 auto;
 }

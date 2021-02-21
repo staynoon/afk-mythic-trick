@@ -49,7 +49,7 @@ function Countdown(props: Props) {
     }
 
     return () => clearTimeout(timer);
-  });
+  },[time.remaining]);
 
   React.useEffect(() => {
     setTime({
