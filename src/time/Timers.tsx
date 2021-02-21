@@ -18,7 +18,7 @@ interface Props {
 }
 
 function Timers (props: Props) {
-  if (props.progression.chapter <= 20) {
+  if (props.progression.chapter < 20) {
     return(
       <div>
         <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear"/>
@@ -27,7 +27,7 @@ function Timers (props: Props) {
         </div>
       </div>
     )
-  } else if (props.progression.chapter === 21) {
+  } else if (props.progression.chapter === 20) {
     return(
       <div>
         <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear"/>
