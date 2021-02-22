@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/afk-mythic-trick/static/css/main.0c6661cc.chunk.css",
-    "main.js": "/afk-mythic-trick/static/js/main.6b03453e.chunk.js",
-    "main.js.map": "/afk-mythic-trick/static/js/main.6b03453e.chunk.js.map",
+    "main.css": "/afk-mythic-trick/static/css/main.966838c6.chunk.css",
+    "main.js": "/afk-mythic-trick/static/js/main.59bd6bc4.chunk.js",
+    "main.js.map": "/afk-mythic-trick/static/js/main.59bd6bc4.chunk.js.map",
     "runtime-main.js": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js",
     "runtime-main.js.map": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js.map",
     "static/js/2.a09b4612.chunk.js": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js",
     "static/js/2.a09b4612.chunk.js.map": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js.map",
     "index.html": "/afk-mythic-trick/index.html",
-    "static/css/main.0c6661cc.chunk.css.map": "/afk-mythic-trick/static/css/main.0c6661cc.chunk.css.map",
+    "static/css/main.966838c6.chunk.css.map": "/afk-mythic-trick/static/css/main.966838c6.chunk.css.map",
     "static/js/2.a09b4612.chunk.js.LICENSE.txt": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js.LICENSE.txt",
     "static/media/arrowDown.6340347c.svg": "/afk-mythic-trick/static/media/arrowDown.6340347c.svg",
     "static/media/arrowUp.d7d4fdb9.svg": "/afk-mythic-trick/static/media/arrowUp.d7d4fdb9.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.b17c2dea.js",
     "static/js/2.a09b4612.chunk.js",
-    "static/css/main.0c6661cc.chunk.css",
-    "static/js/main.6b03453e.chunk.js"
+    "static/css/main.966838c6.chunk.css",
+    "static/js/main.59bd6bc4.chunk.js"
   ]
 }
