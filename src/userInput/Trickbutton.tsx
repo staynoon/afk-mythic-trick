@@ -38,7 +38,7 @@ const monthNames: Array<string> = ["January", "February", "March", "April", "May
 function Trickbutton(props: Props) {
   const [slide, setSlide] = React.useState<string>(props.rate);
 
-  const handleChange = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSlide(e.currentTarget.value);
   }
 
@@ -73,12 +73,12 @@ function Trickbutton(props: Props) {
   }
 
   return (
-    <form>
+    <div>
       <div className="stroke-single">
         <h2>Drop Chance</h2>
-        <div className="slider">
-          <input type="range" id="dropChance" defaultValue={slide} onMouseMoveCapture={handleChange}></input>
-          <h2 id="percentage">{slide}%</h2>
+        <div className="slider-group">
+          <input type="range" id="dropChance" defaultValue={slide} onChange={handleChange} className="slider"></input>
+          <h3 id="percentage">{slide}%</h3>
         </div>
       </div>
       <div className="begin-button">
@@ -86,7 +86,7 @@ function Trickbutton(props: Props) {
           <h2>Let's Trick!</h2>
         </a>
       </div>
-    </form>
+    </div>  
   )
 }
 
