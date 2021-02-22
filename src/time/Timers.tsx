@@ -15,13 +15,14 @@ interface Props {
     gear: number,
     emblem: number
   }
+  rate: string
 }
 
 function Timers (props: Props) {
   if (props.progression.chapter < 20) {
     return(
       <div>
-        <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear"/>
+        <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear" chance={props.rate} />
         <div className="row-container">
           <Countdown name="Mythic Gear Timer" remainingSeconds={props.timeLeft.gear} />
         </div>
@@ -30,7 +31,7 @@ function Timers (props: Props) {
   } else if (props.progression.chapter === 20) {
     return(
       <div>
-        <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear"/>
+        <Claimprompt remainingTime={props.timeLeft.gear} claimType="mythic gear" chance={props.rate} />
         <div className="row-container">
           <Countdown name="Emblems Timer" remainingSeconds={props.timeLeft.emblem} />
           <Countdown name="Mythic Gear Timer" remainingSeconds={props.timeLeft.gear} />
@@ -40,7 +41,7 @@ function Timers (props: Props) {
   } else {
     return(
       <div>
-        <Claimprompt remainingTime={props.timeLeft.stone} claimType="stone"/>
+        <Claimprompt remainingTime={props.timeLeft.stone} claimType="stone" chance={props.rate} />
         <div className="row-container">
           <Countdown name="Emblems Timer" remainingSeconds={props.timeLeft.emblem} />
           <Countdown name="Mythic Gear Timer" remainingSeconds={props.timeLeft.gear} />

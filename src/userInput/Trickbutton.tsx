@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import "./Trickbutton.css"
+import "../main.css"
 
 interface Props {
   time: {
@@ -24,24 +25,29 @@ interface Props {
     chapter: number,
     stage: number
   }
+  slide: string,
+  setSlide: React.Dispatch<React.SetStateAction<string>>
 }
 
-let chance: number = 0.51;
-
-const emblemTime: number = Math.round(230169 * chance);
-const gearTime: number = Math.round(610034 * chance);
-const stoneTime: number = Math.round(737780 * chance);
+const emblemTime: number = Math.round(230169);
+const gearTime: number = Math.round(610034);
+const stoneTime: number = Math.round(737780);
 
 const monthNames: Array<string> = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function Trickbutton(props: Props) {
+  const handleChange = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    props.setSlide(e.currentTarget.value);
+  }
+
   function buttonClick(): void {
     let mythicClearTime = `${monthNames[props.time.month]} ${props.time.day}, ${props.time.year} ${props.time.hour}:${props.time.minute}`;
     localStorage.setItem("mythicClearTime",mythicClearTime);
     let claimTime = new Date(mythicClearTime);
-    let remainingStoneTime = Math.round(claimTime.getTime()/1000) + stoneTime - Math.round(Date.now()/1000);
-    let remainingGearTime = Math.round(claimTime.getTime()/1000) + gearTime - Math.round(Date.now()/1000);
-    let remainingEmblemTime = Math.round(claimTime.getTime()/1000) + emblemTime - Math.round(Date.now()/1000);
+    let chance: number = parseInt(props.slide,10)/100;
+    let remainingStoneTime = Math.round(claimTime.getTime()/1000 + stoneTime * chance - Date.now()/1000);
+    let remainingGearTime = Math.round(claimTime.getTime()/1000 + gearTime * chance - Date.now()/1000);
+    let remainingEmblemTime = Math.round(claimTime.getTime()/1000 + emblemTime * chance - Date.now()/1000);
     if (remainingEmblemTime <= 0) {
       props.setTimer.setEmblem(0);
     } else {
@@ -59,12 +65,24 @@ function Trickbutton(props: Props) {
     }
 
     localStorage.setItem("stageProgression",`${props.progression.chapter}-${props.progression.stage}`);
+    localStorage.setItem("dropChance",props.slide);
   }
 
   return (
-    <div className="begin-button" onClick={buttonClick}>
-      <h2>Let's Trick!</h2>
-    </div>
+    <form>
+      <div className="stroke-single">
+        <h2>Drop Chance</h2>
+        <div className="slider">
+          <input type="range" id="dropChance" defaultValue={props.slide} onMouseMoveCapture={handleChange}></input>
+          <h2 id="percentage">{props.slide}%</h2>
+        </div>
+      </div>
+      <div className="begin-button">
+        <a className="stroke-single" onClick={buttonClick}>
+          <h2>Let's Trick!</h2>
+        </a>
+      </div>
+    </form>
   )
 }
 

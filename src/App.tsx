@@ -4,9 +4,7 @@ import $ from "jquery";
 import './App.css';
 import "./main.css"
 import Timers from "./time/Timers"
-import Stage from "./userInput/Stage"
-import Dateselector from "./userInput/Dateselector"
-import Trickbutton from "./userInput/Trickbutton"
+import Userform from "./userInput/Userform"
 
 interface Time {
   month: number,
@@ -52,16 +50,27 @@ let stringClearTime: string;
 let currentStage: string;
 let stageArray: Array<string>;
 
-let chance: number = 0.51;
+let dropChance: string;
 
-const emblemTime: number = Math.round(230169 * chance);
-const gearTime: number = Math.round(610034 * chance);
-const stoneTime: number = Math.round(737780 * chance);
+const emblemTime: number = Math.round(230169);
+const gearTime: number = Math.round(610034);
+const stoneTime: number = Math.round(737780);
 const monthNames: Array<string> = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function App() {
+  // trick chance cache management
+  if (localStorage.getItem("dropChance") === null) {
+    dropChance = "51";
+    localStorage.setItem("dropChance",dropChance);
+  } else {
+    dropChance = localStorage.getItem("dropChance")!;
+  }
+
+  // trick chance state initialization
+  const [rate,setRate] = React.useState<string>(dropChance);
+
   // clear time storage management
-  if (localStorage.getItem("mythicClearTime") === null) {
+  if (localStorage.getItem("mythicClearTime") === null) { // if no instance of the mythic timer exists in cache
     clearTime = new Date(Date.now());
     stringClearTime = `${monthNames[clearTime.getMonth()]} ${clearTime.getDate()}, ${clearTime.getFullYear()} ${clearTime.getHours()}:${clearTime.getMinutes()}:${clearTime.getSeconds()}`;
     localStorage.setItem("mythicClearTime",stringClearTime);
@@ -69,6 +78,8 @@ function App() {
     stringClearTime = localStorage.getItem("mythicClearTime")!;
     clearTime = new Date(stringClearTime);
   }
+
+  let initRate: number = parseInt(rate,10);
 
   // clear time state setting
   const [month,setMonth] = React.useState<number>(clearTime.getMonth())
@@ -78,9 +89,9 @@ function App() {
   const [minute,setMinute] = React.useState<number>(clearTime.getMinutes())
 
   // calculate initial timer display time
-  let emblemStart = clearTime.getTime() + emblemTime * 1000 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + emblemTime * 1000 - Date.now())/1000);
-  let gearStart = clearTime.getTime() + gearTime * 1000 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + gearTime * 1000 - Date.now())/1000);
-  let stoneStart = clearTime.getTime() + stoneTime * 1000 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + stoneTime * 1000 - Date.now())/1000);
+  let emblemStart = clearTime.getTime() + emblemTime  * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + emblemTime * initRate * 10 - Date.now())/1000);
+  let gearStart = clearTime.getTime() + gearTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + gearTime * initRate * 10 - Date.now())/1000);
+  let stoneStart = clearTime.getTime() + stoneTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + stoneTime * initRate * 10 - Date.now())/1000);
 
   // initial timer state setting
   const [emblem,setEmblem] = React.useState<number>(emblemStart);
@@ -144,12 +155,8 @@ function App() {
       <div className="title-box">
         <h1 className="stroke-single">AFK Mythic Trick Timer</h1>
       </div>
-      <Timers progression={progression} timeLeft={timeLeft} />
-      <div>
-        <Stage state={progression} setState={setProgression} />
-        <Dateselector time={chosenTime} setTime={setTime} />
-        <Trickbutton time={chosenTime} timeLeft={timeLeft} setTimer={setTimer} progression={progression}/>
-      </div>
+      <Timers progression={progression} timeLeft={timeLeft} rate={rate}/>
+      <Userform progression={progression} setProgression={setProgression} chosenTime={chosenTime} setTime={setTime} timeLeft={timeLeft} setTimer={setTimer} slide={rate} setSlide={setRate}/>
     </div>
   )
 };

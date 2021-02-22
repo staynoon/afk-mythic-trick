@@ -3,4 +3,19 @@
   max-width: 150px;
   text-align: center;
   margin: 0 auto;
-  }
+}
+
+input {
+  font-family: inherit;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#percentage {
+  margin-left: 10px;
+}
