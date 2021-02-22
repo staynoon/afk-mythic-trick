@@ -78,7 +78,9 @@ function Trickbutton(props: Props) {
         <h2>Drop Chance</h2>
         <div className="slider-group">
           <input type="range" id="dropChance" defaultValue={slide} onChange={handleChange} className="slider"></input>
-          <h3 id="percentage">{slide}%</h3>
+          <div id="percentage">
+            <h3>{slide}%</h3>
+          </div>
         </div>
       </div>
       <div className="begin-button">
