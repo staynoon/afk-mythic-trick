@@ -46,7 +46,7 @@ function Userform(props: Props) {
     <div>
       <Stage state={props.progression} setState={props.setProgression} />
       <Dateselector time={props.chosenTime} setTime={props.setTime} />
-      <Trickbutton time={props.chosenTime} timeLeft={props.timeLeft} setTimer={props.setTimer} progression={props.progression} slide={props.slide} setSlide={props.setSlide} />
+      <Trickbutton time={props.chosenTime} timeLeft={props.timeLeft} setTimer={props.setTimer} progression={props.progression} rate={props.slide} setRate={props.setSlide} />
     </div>
   )
 }
