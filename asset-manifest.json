@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/afk-mythic-trick/static/css/main.966838c6.chunk.css",
-    "main.js": "/afk-mythic-trick/static/js/main.59bd6bc4.chunk.js",
-    "main.js.map": "/afk-mythic-trick/static/js/main.59bd6bc4.chunk.js.map",
+    "main.js": "/afk-mythic-trick/static/js/main.0b0dc90f.chunk.js",
+    "main.js.map": "/afk-mythic-trick/static/js/main.0b0dc90f.chunk.js.map",
     "runtime-main.js": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js",
     "runtime-main.js.map": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js.map",
     "static/js/2.a09b4612.chunk.js": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.b17c2dea.js",
     "static/js/2.a09b4612.chunk.js",
     "static/css/main.966838c6.chunk.css",
-    "static/js/main.59bd6bc4.chunk.js"
+    "static/js/main.0b0dc90f.chunk.js"
   ]
 }
