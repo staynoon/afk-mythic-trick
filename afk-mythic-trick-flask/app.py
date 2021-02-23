@@ -21,9 +21,8 @@ def convertchapt2stage(chapter):
 
 @app.route('/progression/<int:chapter>/<int:stage>',methods=["GET"])
 def idletime(chapter,stage):
-    gearvalue = 0
-    stonevalue = 0
-    emblemvalue = 0
+    stonevalue = "0"
+    emblemvalue = "0"
 
     if chapter < 35:
         rowvalue = convertchapt2stage(chapter-1) + stage + 2
