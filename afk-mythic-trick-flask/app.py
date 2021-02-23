@@ -36,4 +36,4 @@ def idletime(chapter,stage):
     if chapter >= 21:
         stonevalue = timer_list[(timer_list.index("Mythic+ Stone")) + 1]
 
-    return {'Mythic Gear': gearvalue, 'Faction Emblems': emblemvalue, 'Mythic+ Stone': stonevalue}
+    return {'Gear': gearvalue, 'Emblems': emblemvalue, 'Stone': stonevalue}
