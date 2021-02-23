@@ -25,3 +25,7 @@ yarn-error.log*
 # data mining
 afk-mythic-trick-react/AFK.apk
 afk-mythic-trick-react/Resources
+
+# backend
+afk-mythic-trick-flask/__pycache__
+afk-mythic-trick-flask/venv
