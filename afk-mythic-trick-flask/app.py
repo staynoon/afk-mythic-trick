@@ -1,10 +1,11 @@
 from flask import Flask
+import os
 
 app = Flask(__name__)
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-credential = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"])
+credential = ServiceAccountCredentials.from_json_keyfile_name(os.environ["GOOGLE_APPLICATION_CREDENTIALS"], ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"])
 
 client = gspread.authorize(credential)
 gsheet = client.open("Stage Idle Rewards")
