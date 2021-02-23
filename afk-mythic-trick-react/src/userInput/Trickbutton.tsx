@@ -29,9 +29,9 @@ interface Props {
   setRate: React.Dispatch<React.SetStateAction<string>>
 }
 
-const emblemTime: number = Math.round(230169);
-const gearTime: number = Math.round(610034);
-const stoneTime: number = Math.round(737780);
+let emblemTime: number;
+let gearTime: number;
+let stoneTime: number;
 
 const monthNames: Array<string> = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -45,6 +45,16 @@ function Trickbutton(props: Props) {
   function buttonClick(): void {
     let mythicClearTime = `${monthNames[props.time.month]} ${props.time.day}, ${props.time.year} ${props.time.hour}:${props.time.minute}`;
     localStorage.setItem("mythicClearTime",mythicClearTime);
+
+    let requestURL = '/progression/' + props.progression.chapter + '/' + props.progression.stage;
+    fetch(requestURL)
+      .then(response => response.json())
+      .then(data => {
+        stoneTime = data.Stone;
+        emblemTime = data.Emblem;
+        gearTime = data.Gear
+      })
+
     let claimTime = new Date(mythicClearTime);
     let chance: number = parseInt(slide,10)/100;
     let remainingStoneTime = Math.round(claimTime.getTime()/1000 + stoneTime * chance - Date.now()/1000);
