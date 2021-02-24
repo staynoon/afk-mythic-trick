@@ -51,5 +51,6 @@ input {
 }
 
 #percentage {
-  position: absolute;
+  width: 20px;
+  margin: 0 3px;
 }

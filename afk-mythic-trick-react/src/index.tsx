@@ -8,6 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <body>
       <App />
+      <p>Built by <a href="https://www.reddit.com/u/StayNoon">u/StayNoon</a> and <a href="https://www.reddit.com/u/Qambre">u/Qambre</a>, with special thanks to <a href="https://www.reddit.com/u/panafonic">u/panafonic</a> for providing the data on timing!</p>
     </body>
   </React.StrictMode>,
   document.getElementById('root')

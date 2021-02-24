@@ -35,10 +35,6 @@ interface AFKTimers {
   Gear: string
 }
 
-let emblemTime: number;
-let gearTime: number;
-let stoneTime: number;
-
 let remainingEmblemTime: number;
 let remainingGearTime: number;
 let remainingStoneTime: number;
@@ -69,30 +65,43 @@ function Trickbutton(props: Props) {
     localStorage.setItem("stageProgression",`${props.progression.chapter}-${props.progression.stage}`);
     localStorage.setItem("dropChance",slide);
 
-    getTimer(props.progression.chapter,props.progression.stage)
-      .then(data => {
-        remainingStoneTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Stone,10) * chance - Date.now()/1000);
-        remainingGearTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Gear,10) * chance - Date.now()/1000);
-        remainingEmblemTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Emblems,10) * chance - Date.now()/1000);
+    if (Date.now() - claimTime.getTime() > 737780 * 1000 * chance) {
+      props.setTimer.setEmblem(0);
+      props.setTimer.setGear(0);
+      props.setTimer.setStone(0);
+      localStorage.setItem("emblemTimer","0")
+      localStorage.setItem("gearTimer","0")
+      localStorage.setItem("stoneTimer","0")
+      props.setRate(slide);
+    } else {
+      getTimer(props.progression.chapter,props.progression.stage)
+        .then(data => {
+          remainingStoneTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Stone,10) * chance - Date.now()/1000);
+          remainingGearTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Gear,10) * chance - Date.now()/1000);
+          remainingEmblemTime = Math.round(claimTime.getTime()/1000 + parseInt(data.Emblems,10) * chance - Date.now()/1000);
 
-        if (remainingEmblemTime <= 0) {
-          props.setTimer.setEmblem(0);
-        } else {
-          props.setTimer.setEmblem(remainingEmblemTime);
-        }
-        if (remainingGearTime <= 0) {
-          props.setTimer.setGear(0);
-        } else {
-          props.setTimer.setGear(remainingGearTime);
-        }
-        if (remainingStoneTime <= 0) {
-          props.setTimer.setStone(0);
-        } else {
-          props.setTimer.setStone(remainingStoneTime);
-        }
+          if (remainingEmblemTime <= 0) {
+            props.setTimer.setEmblem(0);
+          } else {
+            props.setTimer.setEmblem(remainingEmblemTime);
+          }
+          if (remainingGearTime <= 0) {
+            props.setTimer.setGear(0);
+          } else {
+            props.setTimer.setGear(remainingGearTime);
+          }
+          if (remainingStoneTime <= 0) {
+            props.setTimer.setStone(0);
+          } else {
+            props.setTimer.setStone(remainingStoneTime);
+          }
 
-        props.setRate(slide);
-      })
+          props.setRate(slide);
+          localStorage.setItem("emblemTimer",data.Emblems)
+          localStorage.setItem("gearTimer",data.Emblems)
+          localStorage.setItem("stoneTimer",data.Emblems)
+        })
+    }
   }
 
   return (

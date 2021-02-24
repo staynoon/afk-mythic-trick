@@ -14,11 +14,19 @@ function Claimprompt(props: Props) {
   let claimTime = Date.now() + props.remainingTime * 1000;
   let claimDate = new Date(claimTime);
 
-  return(
-    <div>
-      <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes() < 10 ? `0${claimDate.getMinutes()}` : `${claimDate.getMinutes()}`} for a {props.chance}% chance to get a {props.claimType}!</p>
-    </div>
-  )
+  if (props.remainingTime === 0) {
+    return(
+      <div>
+        <p className="stroke-single">Claim now for a {props.chance}% chance to get a {props.claimType}!</p>
+      </div>
+    )
+  } else {
+    return(
+      <div>
+        <p className="stroke-single">Come back on {monthNames[claimDate.getMonth()]} {claimDate.getDate()}, {claimDate.getFullYear()} at {claimDate.getHours()}:{claimDate.getMinutes() < 10 ? `0${claimDate.getMinutes()}` : `${claimDate.getMinutes()}`} for a {props.chance}% chance to get a {props.claimType}!</p>
+      </div>
+    )
+  }
 }
 
 export default Claimprompt

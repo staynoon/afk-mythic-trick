@@ -44,6 +44,20 @@ interface SetProgression {
   setStage: React.Dispatch<React.SetStateAction<number>>
 }
 
+interface AFKTimers {
+  Stone: string,
+  Emblems: string,
+  Gear: string
+}
+
+async function getTimer (chapter: number, stage: number): Promise<AFKTimers> {
+  let requestURL: string = '/progression/' + chapter + '/' + stage;
+  const responseData = await fetch(requestURL)
+    .then(response => response.json());
+  
+  return responseData;
+}
+
 let clearTime: Date;
 let stringClearTime: string;
 
@@ -52,9 +66,10 @@ let stageArray: Array<string>;
 
 let dropChance: string;
 
-const emblemTime: number = Math.round(230169);
-const gearTime: number = Math.round(610034);
-const stoneTime: number = Math.round(737780);
+let emblemTime: number = 0;
+let gearTime: number = 0;
+let stoneTime: number = 0;
+
 const monthNames: Array<string> = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function App() {
@@ -88,16 +103,6 @@ function App() {
   const [hour,setHour] = React.useState<number>(clearTime.getHours())
   const [minute,setMinute] = React.useState<number>(clearTime.getMinutes())
 
-  // calculate initial timer display time
-  let emblemStart = clearTime.getTime() + emblemTime  * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + emblemTime * initRate * 10 - Date.now())/1000);
-  let gearStart = clearTime.getTime() + gearTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + gearTime * initRate * 10 - Date.now())/1000);
-  let stoneStart = clearTime.getTime() + stoneTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + stoneTime * initRate * 10 - Date.now())/1000);
-
-  // initial timer state setting
-  const [emblem,setEmblem] = React.useState<number>(emblemStart);
-  const [gear,setGear] = React.useState<number>(gearStart);
-  const [stone,setStone] = React.useState<number>(stoneStart);
-
   // chapter and stage progression 
   if (localStorage.getItem("stageProgression") === null) {
     currentStage = "16-11";
@@ -110,6 +115,31 @@ function App() {
   stageArray = currentStage.split("-");
   const [chapter,setChapter] = React.useState<number>(parseInt(stageArray[0],10));
   const [stage,setStage] = React.useState<number>(parseInt(stageArray[1],10));
+
+  if (localStorage.getItem("emblemTimer") === null || localStorage.getItem("gearTimer") === null || localStorage.getItem("stoneTimer") === null) {
+    getTimer(chapter,stage)
+      .then(data => {
+        localStorage.setItem("emblemTimer",data.Emblems);
+        localStorage.setItem("gearTimer",data.Gear);
+        localStorage.setItem("stoneTimer",data.Stone);
+        stoneTime = parseInt(data.Stone,10);
+        gearTime = parseInt(data.Gear,10);
+        emblemTime = parseInt(data.Emblems,10);
+      })
+  } else {
+    stoneTime = parseInt(localStorage.getItem("stoneTimer")!,10);
+    gearTime = parseInt(localStorage.getItem("gearTimer")!,10);
+    emblemTime = parseInt(localStorage.getItem("emblemTimer")!,10);
+  }
+
+  let remainingEmblemTime = clearTime.getTime() + emblemTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + emblemTime * initRate * 10 - Date.now())/1000);
+  let remainingGearTime = clearTime.getTime() + gearTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + gearTime * initRate * 10 - Date.now())/1000);
+  let remainingStoneTime = clearTime.getTime() + stoneTime * initRate * 10 - Date.now() <= 0 ? 0 : Math.round((clearTime.getTime() + stoneTime * initRate * 10 - Date.now())/1000);
+
+  // initial timer state setting
+  const [emblem,setEmblem] = React.useState<number>(remainingEmblemTime);
+  const [gear,setGear] = React.useState<number>(remainingGearTime);
+  const [stone,setStone] = React.useState<number>(remainingStoneTime);
 
   // state and useState groupings into objects
   let chosenTime: Time = {
