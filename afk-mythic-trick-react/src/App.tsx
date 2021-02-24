@@ -51,7 +51,7 @@ interface AFKTimers {
 }
 
 async function getTimer (chapter: number, stage: number): Promise<AFKTimers> {
-  let requestURL: string = '/progression/' + chapter + '/' + stage;
+  let requestURL: string = 'https://afk-mythic-trick.herokuapp.com/progression/' + chapter + '/' + stage;
   const responseData = await fetch(requestURL)
     .then(response => response.json());
   

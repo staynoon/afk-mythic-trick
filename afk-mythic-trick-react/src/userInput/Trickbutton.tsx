@@ -42,7 +42,7 @@ let remainingStoneTime: number;
 const monthNames: Array<string> = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 async function getTimer (chapter: number, stage: number): Promise<AFKTimers> {
-  let requestURL: string = '/progression/' + chapter + '/' + stage;
+  let requestURL: string = 'https://afk-mythic-trick.herokuapp.com/progression/' + chapter + '/' + stage;
   const responseData = await fetch(requestURL)
     .then(response => response.json());
   
@@ -98,8 +98,8 @@ function Trickbutton(props: Props) {
 
           props.setRate(slide);
           localStorage.setItem("emblemTimer",data.Emblems)
-          localStorage.setItem("gearTimer",data.Emblems)
-          localStorage.setItem("stoneTimer",data.Emblems)
+          localStorage.setItem("gearTimer",data.Gear)
+          localStorage.setItem("stoneTimer",data.Stone)
         })
     }
   }
