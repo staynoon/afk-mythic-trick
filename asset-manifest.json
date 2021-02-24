@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/afk-mythic-trick/static/css/main.38301dbb.chunk.css",
-    "main.js": "/afk-mythic-trick/static/js/main.c6c1be75.chunk.js",
-    "main.js.map": "/afk-mythic-trick/static/js/main.c6c1be75.chunk.js.map",
+    "main.css": "/afk-mythic-trick/static/css/main.c11ebf17.chunk.css",
+    "main.js": "/afk-mythic-trick/static/js/main.3f039c02.chunk.js",
+    "main.js.map": "/afk-mythic-trick/static/js/main.3f039c02.chunk.js.map",
     "runtime-main.js": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js",
     "runtime-main.js.map": "/afk-mythic-trick/static/js/runtime-main.b17c2dea.js.map",
-    "static/js/2.a09b4612.chunk.js": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js",
-    "static/js/2.a09b4612.chunk.js.map": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js.map",
+    "static/js/2.e9bd4a10.chunk.js": "/afk-mythic-trick/static/js/2.e9bd4a10.chunk.js",
+    "static/js/2.e9bd4a10.chunk.js.map": "/afk-mythic-trick/static/js/2.e9bd4a10.chunk.js.map",
     "index.html": "/afk-mythic-trick/index.html",
-    "static/css/main.38301dbb.chunk.css.map": "/afk-mythic-trick/static/css/main.38301dbb.chunk.css.map",
-    "static/js/2.a09b4612.chunk.js.LICENSE.txt": "/afk-mythic-trick/static/js/2.a09b4612.chunk.js.LICENSE.txt",
+    "static/css/main.c11ebf17.chunk.css.map": "/afk-mythic-trick/static/css/main.c11ebf17.chunk.css.map",
+    "static/js/2.e9bd4a10.chunk.js.LICENSE.txt": "/afk-mythic-trick/static/js/2.e9bd4a10.chunk.js.LICENSE.txt",
     "static/media/arrowDown.6340347c.svg": "/afk-mythic-trick/static/media/arrowDown.6340347c.svg",
     "static/media/arrowUp.d7d4fdb9.svg": "/afk-mythic-trick/static/media/arrowUp.d7d4fdb9.svg",
     "static/media/main.css": "/afk-mythic-trick/static/media/hgame_font_en.b2fefa03.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.b17c2dea.js",
-    "static/js/2.a09b4612.chunk.js",
-    "static/css/main.38301dbb.chunk.css",
-    "static/js/main.c6c1be75.chunk.js"
+    "static/js/2.e9bd4a10.chunk.js",
+    "static/css/main.c11ebf17.chunk.css",
+    "static/js/main.3f039c02.chunk.js"
   ]
 }
